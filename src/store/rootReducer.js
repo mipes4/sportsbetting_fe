@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-// import { predictions } from "./predictions/reducer";
+// import { matches } from "./matches/reducer";
 
 export default combineReducers({
-  //   predictions,
+  //   matches,
 });
