@@ -7,6 +7,9 @@ export default function NavigationComponent() {
       <NavLink className="PageButton" exact={true} to="/">
         Home
       </NavLink>
+      <NavLink className="PageButton" exact={true} to="/voorspellingen">
+        Voorspellingen
+      </NavLink>
     </div>
   );
 }
