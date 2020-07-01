@@ -1,10 +1,15 @@
-const initialState = {};
+import { ADD_MATCHES } from "./actions";
 
-export default (state = initialState, { type, payload }) => {
-  //   switch (type) {
-  //     case typeName:
-  //       return { ...state, ...payload };
-  //     default:
-  //       return state;
-  //   }
+const initialState = {
+  fixtures: [],
+};
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_MATCHES:
+      console.log("reducer? type:", action.type, "payload:", action.payload);
+      return { ...state, fixtures: action.payload };
+    default:
+      return state;
+  }
 };

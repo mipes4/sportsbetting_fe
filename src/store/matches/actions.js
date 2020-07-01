@@ -4,6 +4,7 @@ import Axios from "axios";
 export const ADD_MATCHES = "ADD_MATCHES";
 
 export function storeMatches(data) {
+  console.log("What is my payload?", data);
   return { type: ADD_MATCHES, payload: data };
 }
 
@@ -18,8 +19,8 @@ export function getMatches() {
           league_id
         )}?timezone=Europe/London`
       );
-      console.log("what is my response?", response.data.api);
-      dispatch(storeMatches(response.data));
+      console.log("what is my response?", response.data);
+      dispatch(storeMatches(response.data.api));
     } catch (e) {}
   };
 }
