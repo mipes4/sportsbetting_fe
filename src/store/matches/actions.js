@@ -17,7 +17,7 @@ export function getMatches() {
       const response = await Axios.get(
         `${proxyUrl}${apiUrlFootballDemo}/fixtures/league/${parseInt(
           league_id
-        )}?timezone=Europe/London`
+        )}`
       );
       // console.log("what is my response?", response.data);
       dispatch(storeMatches(response.data.api));

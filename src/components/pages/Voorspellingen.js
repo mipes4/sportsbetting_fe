@@ -29,7 +29,7 @@ export default function Voorspellingen() {
         eventDate={match.event_date}
         eventTimestamp={match.event_timestamp}
         round={match.round}
-        status={match.status}
+        status={match.statusShort}
       />
     );
   });
