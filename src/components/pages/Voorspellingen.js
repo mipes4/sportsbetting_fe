@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { getMatches } from "../../store/matches/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMatches } from "../../store/matches/selectors";
 
 export default function Voorspellingen() {
   const dispatch = useDispatch();
+  const matches = useSelector(selectMatches);
 
   useEffect(() => {
     dispatch(getMatches());
