@@ -1,7 +1,6 @@
 import React from "react";
 import moment from "moment";
 import { ReactComponent as Clock } from "../images/clock.svg";
-import "./MatchCard.css";
 
 export default function MatchCard(props) {
   // console.log(props.predGoalsHomeTeam);

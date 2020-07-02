@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Foundation, { TitleBar } from "react-foundation";
 
 export default function NavigationComponent() {
   return (
