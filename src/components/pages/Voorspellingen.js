@@ -16,20 +16,19 @@ export default function Voorspellingen() {
     // console.log("Match?", match.fixture_id);
     return (
       <MatchCard
-        key={match.fixture_id}
-        fixtureId={match.fixture_id}
-        homeTeamId={match.homeTeam.team_id}
-        homeTeamName={match.homeTeam.team_name}
-        homeTeamLogo={match.homeTeam.logo}
+        key={match.id}
+        fixtureId={match.id}
+        homeTeamId={match.homeTeamId}
+        homeTeamName={match.homeTeamName}
+        homeTeamLogo={match.homeTeamLogo}
         goalsHomeTeam={match.goalsHomeTeam}
-        awayTeamId={match.awayTeam.team_id}
-        awayTeamName={match.awayTeam.team_name}
-        awayTeamLogo={match.awayTeam.logo}
+        awayTeamId={match.awayTeamId}
+        awayTeamName={match.awayTeamName}
+        awayTeamLogo={match.awayTeamLogo}
         goalsAwayTeam={match.goalsAwayTeam}
-        eventDate={match.event_date}
-        eventTimestamp={match.event_timestamp}
+        eventTimestamp={match.eventTimestamp}
         round={match.round}
-        status={match.statusShort}
+        status={match.status}
       />
     );
   });
