@@ -13,7 +13,7 @@ export default function Voorspellingen() {
   }, [dispatch]);
 
   const toMatchCard = matches.map((match) => {
-    // console.log("Match?", match.fixture_id);
+    // console.log("Match?", match.eventTimeStamp);
     return (
       <MatchCard
         key={match.id}
@@ -26,7 +26,7 @@ export default function Voorspellingen() {
         awayTeamName={match.awayTeamName}
         awayTeamLogo={match.awayTeamLogo}
         goalsAwayTeam={match.goalsAwayTeam}
-        eventTimestamp={match.eventTimestamp}
+        eventTimestamp={match.eventTimeStamp}
         round={match.round}
         status={match.status}
       />
