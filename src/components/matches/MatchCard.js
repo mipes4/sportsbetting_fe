@@ -1,14 +1,15 @@
 import React from "react";
 import moment from "moment";
 import { ReactComponent as Clock } from "../images/clock.svg";
+import "./MatchCard.css";
 
 export default function MatchCard(props) {
   // console.log(props.predGoalsHomeTeam);
 
   return (
-    <div>
-      {props.fixtureId}
-      <div>{`${moment
+    <div className="Card">
+      {/* {props.fixtureId} */}
+      <div className="CardContainer">{`${moment
         .unix(props.eventTimestamp)
         .format("DD MMMM YY h:mm uur")}`}</div>
       <div>
