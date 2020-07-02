@@ -3,18 +3,25 @@ import Axios from "axios";
 
 export const ADD_MATCHES = "ADD_MATCHES";
 
-export function storeMatches(data) {
-  // console.log("What is my payload?", data.fixtures);
+export function dataFullyFetched(data) {
+  // console.log("What is my payload?", data);
   return { type: ADD_MATCHES, payload: data };
 }
 
-export function getMatches() {
-  return async (dispatch, getState) => {
-    //Eredivise is league 566, make this value dynamic later on
-    try {
-      const response = await Axios.get(`${apiUrl}/matches`);
-      // console.log("what is my response?", response.data);
-      dispatch(storeMatches(response.data));
-    } catch (e) {}
+export function fetchMatchesAndPredictions() {
+  return async function thunk(dispatch, getState) {
+    const [matchesResponse, predictionsResponse] = await Promise.all([
+      Axios.get(`${apiUrl}/matches`),
+      Axios.get(`${apiUrl}/predictions`),
+    ]);
+
+    // console.log("what is my mathesResponse?", matchesResponse.data);
+    // console.log("What is my predictionsResponse?", predictionsResponse.data);
+    dispatch(
+      dataFullyFetched({
+        matches: matchesResponse.data,
+        predictions: predictionsResponse.data,
+      })
+    );
   };
 }

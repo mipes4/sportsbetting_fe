@@ -1,32 +1,9 @@
 import React from "react";
 import moment from "moment";
 import { ReactComponent as Clock } from "../images/clock.svg";
-import timestamp from "unix-timestamp";
 
 export default function MatchCard(props) {
-  const status = props.status;
-  const timestampNow = timestamp.now();
-  // console.log("What is my timestamp now?", timestampNow);
-
-  const timeLeft = () => {
-    const timestampFuture = 1593777600;
-    // return moment.unix(timestampFuture - timestampNow).format()
-
-    moment(timestampFuture, "day").fromNow();
-
-    // moment().subtract(timestamp).format("LTS");
-
-    // switch (status) {
-    //   case "TBD":
-    //     return;
-    //   case "FT":
-    //     return "gesloten";
-    //   default:
-    //     return "niet bekend";
-    // }
-  };
-
-  // console.log(props.eventTimestamp);
+  // console.log(props.predGoalsHomeTeam);
 
   return (
     <div>

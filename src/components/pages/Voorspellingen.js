@@ -1,18 +1,27 @@
 import React, { useEffect } from "react";
 import MatchCard from "../matches/MatchCard";
-import { getMatches } from "../../store/matches/actions";
+import {
+  dataFullyFetched,
+  fetchMatchesAndPredictions,
+} from "../../store/matches/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { selectMatches } from "../../store/matches/selectors";
+import {
+  selectMatches,
+  selectPredictions,
+} from "../../store/matches/selectors";
 
 export default function Voorspellingen() {
   const dispatch = useDispatch();
   const matches = useSelector(selectMatches);
+  const predictions = useSelector(selectPredictions);
 
   useEffect(() => {
-    dispatch(getMatches());
+    dispatch(fetchMatchesAndPredictions());
   }, [dispatch]);
 
-  const toMatchCard = matches.map((match) => {
+  if (!matches) return <p>Loading...</p>;
+
+  const mathesToMatchCard = matches.map((match) => {
     // console.log("Match?", match.eventTimeStamp);
     return (
       <MatchCard
@@ -33,12 +42,27 @@ export default function Voorspellingen() {
     );
   });
 
-  // console.log("What is matches?", matches);
+  console.log("What is matches?", matches);
+
+  // const predictionsToMathCard = predictions.map((prediction) => {
+  //   // console.log("Prediction?", prediction);
+  //   return (
+  //     <PredictionCard
+  //       key={prediction.id}
+  //       predGoalsHomeTeam={prediction.predGoalsHomeTeam}
+  //       predGoalsAwayTeam={prediction.predGoalsAwayTeam}
+  //       scoreId={prediction.scoreId}
+  //       fixtureId={prediction.fixtureId}
+  //     />
+  //   );
+  // });
+
+  console.log("What is predictions?", predictions);
 
   return (
     <div>
       <h1>Voorspellingen</h1>
-      <div>{toMatchCard}</div>
+      <div>{mathesToMatchCard}</div>
     </div>
   );
 }
