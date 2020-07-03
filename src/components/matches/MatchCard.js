@@ -2,18 +2,29 @@ import React, { useState } from "react";
 import moment from "moment";
 import { ReactComponent as Clock } from "../images/clock.svg";
 import { useDispatch } from "react-redux";
-import { postPrediction } from "../../store/predictions/actions";
+import {
+  postPrediction,
+  changePrediction,
+} from "../../store/predictions/actions";
 
 export default function MatchCard(props) {
   const dispatch = useDispatch();
-  const [goalsHomeTeam, setGoalsHomeTeam] = useState(props.goalsHomeTeam);
-  const [goalsAwayTeam, setGoalsAwayTeam] = useState(props.goalsAwayTeam);
+  const [goalsHomeTeam, setGoalsHomeTeam] = useState();
+  const [goalsAwayTeam, setGoalsAwayTeam] = useState();
 
   const savePrediction = (event) => {
+    // if ((props.predictions = [])) {
     dispatch(
       postPrediction(goalsHomeTeam, goalsAwayTeam, 1, 1, props.fixtureId)
     );
+    // } else {
+    //   dispatch(
+    //     changePrediction(goalsHomeTeam, goalsAwayTeam, 1, props.fixtureId)
+    //   );
+    // }
   };
+
+  console.log(props.predictions);
 
   const predGoalsHomeTeam = props.predictions.map((prediction) => {
     return prediction.predGoalsHomeTeam;
@@ -33,6 +44,7 @@ export default function MatchCard(props) {
         {`${props.homeTeamName} `}
         <input
           type="number"
+          value={goalsHomeTeam}
           min="0"
           defaultValue={predGoalsHomeTeam[0]}
           onChange={(event) => setGoalsHomeTeam(event.target.value)}
@@ -41,6 +53,7 @@ export default function MatchCard(props) {
         <input
           type="number"
           min="0"
+          value={goalsAwayTeam}
           defaultValue={predGoalsAwayTeam[0]}
           onChange={(event) => setGoalsAwayTeam(event.target.value)}
         ></input>
