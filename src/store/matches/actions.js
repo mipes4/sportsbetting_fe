@@ -9,19 +9,13 @@ export function dataFullyFetched(data) {
 }
 
 export function fetchMatchesAndPredictions() {
-  return async function thunk(dispatch, getState) {
-    const [matchesResponse, predictionsResponse] = await Promise.all([
-      Axios.get(`${apiUrl}/matches`),
-      Axios.get(`${apiUrl}/predictions`),
-    ]);
-
-    // console.log("what is my mathesResponse?", matchesResponse.data);
-    // console.log("What is my predictionsResponse?", predictionsResponse.data);
-    dispatch(
-      dataFullyFetched({
-        matches: matchesResponse.data,
-        predictions: predictionsResponse.data,
-      })
-    );
+  return async (dispatch, getState) => {
+    // Hardcoded userId for now
+    const userId = 1;
+    try {
+      const response = await Axios.get(`${apiUrl}/matches/user/${userId}`);
+      // console.log("What is my predictionsResponse?", predictionsResponse.data);
+      dispatch(dataFullyFetched(response.data));
+    } catch (e) {}
   };
 }
