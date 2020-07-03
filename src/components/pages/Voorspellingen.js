@@ -13,7 +13,7 @@ import {
 export default function Voorspellingen() {
   const dispatch = useDispatch();
   const matches = useSelector(selectMatches);
-  const predictions = useSelector(selectPredictions);
+  // const predictions = useSelector(selectPredictions);
 
   useEffect(() => {
     dispatch(fetchMatchesAndPredictions());
@@ -21,8 +21,8 @@ export default function Voorspellingen() {
 
   if (!matches) return <p>Loading...</p>;
 
-  const mathesToMatchCard = matches.map((match) => {
-    // console.log("Match?", match.eventTimeStamp);
+  const matchesToMatchCard = matches.map((match) => {
+    // console.log("Match?", match);
     return (
       <MatchCard
         key={match.id}
@@ -38,11 +38,12 @@ export default function Voorspellingen() {
         eventTimestamp={match.eventTimeStamp}
         round={match.round}
         status={match.status}
+        predictions={match.predictions}
       />
     );
   });
 
-  console.log("What is matches?", matches);
+  // console.log("What is matches?", matches);
 
   // const predictionsToMathCard = predictions.map((prediction) => {
   //   // console.log("Prediction?", prediction);
@@ -57,12 +58,12 @@ export default function Voorspellingen() {
   //   );
   // });
 
-  console.log("What is predictions?", predictions);
+  // console.log("What is predictions?", predictions);
 
   return (
     <div>
       <h1>Voorspellingen</h1>
-      <div>{mathesToMatchCard}</div>
+      <div>{matchesToMatchCard}</div>
     </div>
   );
 }

@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import { ReactComponent as Clock } from "../images/clock.svg";
-import "./MatchCard.css";
 
 export default function MatchCard(props) {
-  // console.log(props.predGoalsHomeTeam);
+  const [predGoalsHomeTeam, setPredGoalsHomeTeam] = useState();
+  // console.log(props.predictions);
+
+  const predictionsHomeTeam = props.predictions.map((prediction) => {
+    // console.log(prediction.predGoalsHomeTeam);
+    const predGoalsHomeTeam = prediction.predGoalsHomeTeam;
+  });
+
+  // console.log(predictionsHomeTeam);
 
   return (
     <div className="Card">
