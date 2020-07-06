@@ -2,8 +2,16 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import NavbarItem from "./NavbarItem";
+import { useSelector } from "react-redux";
+import { selectToken } from "../../store/user/selectors";
+import LoggedIn from "./LoggedIn";
+import LoggedOut from "./LoggedOut";
 
 export default function NavigationComponent() {
+  const token = useSelector(selectToken);
+
+  const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand as={NavLink} to="/">
@@ -20,6 +28,7 @@ export default function NavigationComponent() {
             <NavDropdown.Item as="#action/3.1">Profiel</NavDropdown.Item>
             <NavDropdown.Item as="#action/3.2">Admin</NavDropdown.Item>
           </NavDropdown>
+          {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
