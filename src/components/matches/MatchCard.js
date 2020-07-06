@@ -31,7 +31,7 @@ export default function MatchCard(props) {
     // }
   };
 
-  // console.log(props.predictions);
+  // console.log(props);
 
   const predGoalsHomeTeam = props.predictions.map((prediction) => {
     return prediction.predGoalsHomeTeam;
@@ -41,25 +41,13 @@ export default function MatchCard(props) {
     return prediction.predGoalsAwayTeam;
   });
 
+  // const compareMatches = (matchA, matchB) => {
+  //   return matchA.fixtureId - matchB.fixtureId;
+  // };
+
+  // const sortedMatches = props.sort(compareMatches);
+
   return (
-    /**
-     * 
-     * Two input fields for predictions
-     * 
-    <Form>
-  <Row>
-    <Col>
-      <Form.Control placeholder="First name" />
-    </Col>
-    <Col>
-      <Form.Control placeholder="Last name" />
-    </Col>
-  </Row>
-</Form>
-
-*
-     */
-
     <Container fluid>
       <Row>
         <Col>
@@ -103,6 +91,9 @@ export default function MatchCard(props) {
                     <Button type="submit" onClick={savePrediction}>
                       Save
                     </Button>
+                  </Col>
+                  <Col>
+                    <p>Score: </p>
                   </Col>
                 </Row>
               </Form>
