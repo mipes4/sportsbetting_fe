@@ -1,14 +1,8 @@
 import React, { useEffect } from "react";
 import MatchCard from "../matches/MatchCard";
-import {
-  dataFullyFetched,
-  fetchMatchesAndPredictions,
-} from "../../store/matches/actions";
+import { fetchMatchesAndPredictions } from "../../store/matches/actions";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectMatches,
-  selectPredictions,
-} from "../../store/matches/selectors";
+import { selectMatches } from "../../store/matches/selectors";
 
 export default function Voorspellingen() {
   const dispatch = useDispatch();
@@ -44,6 +38,7 @@ export default function Voorspellingen() {
         round={match.round}
         status={match.status}
         predictions={match.predictions}
+        score={match.predictions.score}
       />
     );
   });

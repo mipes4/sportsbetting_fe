@@ -14,7 +14,6 @@ export function fetchMatchesAndPredictions() {
     const userId = 1;
     try {
       const response = await Axios.get(`${apiUrl}/matches/user/${userId}`);
-      // console.log("What is my predictionsResponse?", predictionsResponse.data);
       dispatch(dataFullyFetched(response.data));
     } catch (e) {}
   };

@@ -4,15 +4,7 @@ import logoDummy from "../images/logoDummy.png";
 import { ReactComponent as Clock } from "../images/clock.svg";
 import { useDispatch } from "react-redux";
 import { postPrediction } from "../../store/predictions/actions";
-import {
-  Card,
-  Button,
-  Figure,
-  Row,
-  Col,
-  Container,
-  Form,
-} from "react-bootstrap";
+import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
 
 export default function MatchCard(props) {
   const dispatch = useDispatch();
@@ -46,6 +38,67 @@ export default function MatchCard(props) {
   // };
 
   // const sortedMatches = props.sort(compareMatches);
+
+  const whoWins = (homeTeam, awayTeam) => {
+    if (homeTeam > awayTeam) {
+      return "homeWins";
+    } else if (homeTeam < awayTeam) {
+      return "awayWins";
+    } else {
+      return "draw";
+    }
+  };
+
+  const totoScore = () => {
+    const resultMatch = whoWins(props.goalsHomeTeam, props.goalsAwayTeam);
+    // console.log("What is resultMatch?", resultMatch);
+    const resultPred = whoWins(predGoalsHomeTeam[0], predGoalsAwayTeam[0]);
+    // console.log("What is resultPred?", resultPred);
+
+    if (resultMatch === resultPred) {
+      return 5;
+    } else {
+      return 0;
+    }
+  };
+
+  // console.log(totoScore());
+
+  const goalsRightPredicted = (result, pred) => {
+    if (result === pred) {
+      return 2;
+    } else {
+      return 0;
+    }
+  };
+
+  const goalsBonus = () => {
+    const resultHome = goalsRightPredicted(
+      props.goalsHomeTeam,
+      predGoalsHomeTeam[0]
+    );
+    const resultAway = goalsRightPredicted(
+      props.goalsAwayTeam,
+      predGoalsAwayTeam[0]
+    );
+
+    return resultHome + resultAway;
+  };
+
+  // console.log(goalsBonus());
+
+  const fullScore = () => {
+    if (goalsBonus() === 4) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
+  // console.log(fullScore());
+
+  const totalScore = totoScore() + goalsBonus() + fullScore();
+  // console.log(totalScore);
 
   return (
     <Container fluid>
@@ -93,7 +146,7 @@ export default function MatchCard(props) {
                     </Button>
                   </Col>
                   <Col>
-                    <p>Score: </p>
+                    <h2>{`Score: ${totalScore}`}</h2>
                   </Col>
                 </Row>
               </Form>
