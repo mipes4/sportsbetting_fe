@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import logoDummy from "../images/logoDummy.png";
 import { ReactComponent as Clock } from "../images/clock.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postPrediction } from "../../store/predictions/actions";
 import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
+import { fetchScores } from "../../store/configs/actions";
+import { selectScores } from "../../store/configs/selectors";
+import { calculateScore } from "../../config/helperScores";
 
 export default function MatchCard(props) {
   const dispatch = useDispatch();
   const [goalsHomeTeam, setGoalsHomeTeam] = useState();
   const [goalsAwayTeam, setGoalsAwayTeam] = useState();
+  const scores = useSelector(selectScores);
 
   const savePrediction = (event) => {
     // if ((props.predictions = [])) {
@@ -23,8 +27,6 @@ export default function MatchCard(props) {
     // }
   };
 
-  // console.log(props);
-
   const predGoalsHomeTeam = props.predictions.map((prediction) => {
     return prediction.predGoalsHomeTeam;
   });
@@ -33,72 +35,15 @@ export default function MatchCard(props) {
     return prediction.predGoalsAwayTeam;
   });
 
-  // const compareMatches = (matchA, matchB) => {
-  //   return matchA.fixtureId - matchB.fixtureId;
-  // };
+  if (!scores) return <p>Loading...</p>;
 
-  // const sortedMatches = props.sort(compareMatches);
+  const totalScore = calculateScore(
+    { homeTeam: props.goalsHomeTeam, awayTeam: props.goalsAwayTeam },
+    { homeTeam: predGoalsHomeTeam[0], awayTeam: predGoalsAwayTeam[0] },
+    scores[0]
+  );
 
-  const whoWins = (homeTeam, awayTeam) => {
-    if (homeTeam > awayTeam) {
-      return "homeWins";
-    } else if (homeTeam < awayTeam) {
-      return "awayWins";
-    } else {
-      return "draw";
-    }
-  };
-
-  const totoScore = () => {
-    const resultMatch = whoWins(props.goalsHomeTeam, props.goalsAwayTeam);
-    // console.log("What is resultMatch?", resultMatch);
-    const resultPred = whoWins(predGoalsHomeTeam[0], predGoalsAwayTeam[0]);
-    // console.log("What is resultPred?", resultPred);
-
-    if (resultMatch === resultPred) {
-      return 5;
-    } else {
-      return 0;
-    }
-  };
-
-  // console.log(totoScore());
-
-  const goalsRightPredicted = (result, pred) => {
-    if (result === pred) {
-      return 2;
-    } else {
-      return 0;
-    }
-  };
-
-  const goalsBonus = () => {
-    const resultHome = goalsRightPredicted(
-      props.goalsHomeTeam,
-      predGoalsHomeTeam[0]
-    );
-    const resultAway = goalsRightPredicted(
-      props.goalsAwayTeam,
-      predGoalsAwayTeam[0]
-    );
-
-    return resultHome + resultAway;
-  };
-
-  // console.log(goalsBonus());
-
-  const fullScore = () => {
-    if (goalsBonus() === 4) {
-      return 1;
-    } else {
-      return 0;
-    }
-  };
-
-  // console.log(fullScore());
-
-  const totalScore = totoScore() + goalsBonus() + fullScore();
-  // console.log(totalScore);
+  // console.log("What are my scores?", scores[0]);
 
   return (
     <Container fluid>
@@ -146,7 +91,13 @@ export default function MatchCard(props) {
                     </Button>
                   </Col>
                   <Col>
-                    <h2>{`Score: ${totalScore}`}</h2>
+                    <>
+                      {props.status === "FT" ? (
+                        <h2>{`Score: ${totalScore}`}</h2>
+                      ) : (
+                        <p>geen score</p>
+                      )}
+                    </>
                   </Col>
                 </Row>
               </Form>
