@@ -2,22 +2,17 @@ import React, { useState } from "react";
 import moment from "moment";
 import logoDummy from "../images/logoDummy.png";
 import { ReactComponent as Clock } from "../images/clock.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postPrediction } from "../../store/predictions/actions";
-import {
-  Card,
-  Button,
-  Figure,
-  Row,
-  Col,
-  Container,
-  Form,
-} from "react-bootstrap";
+import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
+import { selectScores } from "../../store/configs/selectors";
+import { calculateScore } from "../../config/helperScores";
 
 export default function MatchCard(props) {
   const dispatch = useDispatch();
   const [goalsHomeTeam, setGoalsHomeTeam] = useState();
   const [goalsAwayTeam, setGoalsAwayTeam] = useState();
+  const scores = useSelector(selectScores);
 
   const savePrediction = (event) => {
     // if ((props.predictions = [])) {
@@ -31,8 +26,6 @@ export default function MatchCard(props) {
     // }
   };
 
-  // console.log(props.predictions);
-
   const predGoalsHomeTeam = props.predictions.map((prediction) => {
     return prediction.predGoalsHomeTeam;
   });
@@ -41,25 +34,17 @@ export default function MatchCard(props) {
     return prediction.predGoalsAwayTeam;
   });
 
+  if (!scores) return <p>Loading...</p>;
+
+  const totalScore = calculateScore(
+    { homeTeam: props.goalsHomeTeam, awayTeam: props.goalsAwayTeam },
+    { homeTeam: predGoalsHomeTeam[0], awayTeam: predGoalsAwayTeam[0] },
+    scores[0]
+  );
+
+  // console.log("What are my scores?", scores[0]);
+
   return (
-    /**
-     * 
-     * Two input fields for predictions
-     * 
-    <Form>
-  <Row>
-    <Col>
-      <Form.Control placeholder="First name" />
-    </Col>
-    <Col>
-      <Form.Control placeholder="Last name" />
-    </Col>
-  </Row>
-</Form>
-
-*
-     */
-
     <Container fluid>
       <Row>
         <Col>
@@ -103,6 +88,15 @@ export default function MatchCard(props) {
                     <Button type="submit" onClick={savePrediction}>
                       Save
                     </Button>
+                  </Col>
+                  <Col>
+                    <>
+                      {props.status === "FT" ? (
+                        <h2>{`Score: ${totalScore}`}</h2>
+                      ) : (
+                        <p>geen score</p>
+                      )}
+                    </>
                   </Col>
                 </Row>
               </Form>
