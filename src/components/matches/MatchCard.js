@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import logoDummy from "../images/logoDummy.png";
 import { ReactComponent as Clock } from "../images/clock.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { postPrediction } from "../../store/predictions/actions";
 import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
-import { fetchScores } from "../../store/configs/actions";
 import { selectScores } from "../../store/configs/selectors";
 import { calculateScore } from "../../config/helperScores";
 
