@@ -8,10 +8,12 @@ export function dataFullyFetched(data) {
   return { type: ADD_MATCHES, payload: data };
 }
 
-export function fetchMatchesAndPredictions(userId) {
+export function fetchMatchesAndPredictions(userId, roundNr) {
   return async (dispatch, getState) => {
     try {
-      const response = await Axios.get(`${apiUrl}/matches/user/${userId}`);
+      const response = await Axios.get(
+        `${apiUrl}/matches/user/${userId}/round/${roundNr}`
+      );
       dispatch(dataFullyFetched(response.data));
     } catch (e) {}
   };

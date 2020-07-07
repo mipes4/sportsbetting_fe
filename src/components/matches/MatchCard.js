@@ -50,7 +50,7 @@ export default function MatchCard(props) {
     return prediction.predGoalsAwayTeam;
   });
 
-  if (!scores) return <p>Loading...</p>;
+  if (!scores[0]) return <p>Loading...</p>;
 
   const totalScore = calculateScore(
     { homeTeam: props.goalsHomeTeam, awayTeam: props.goalsAwayTeam },
@@ -117,7 +117,7 @@ export default function MatchCard(props) {
                 </Row>
               </Form>
             </Card.Body>
-            <Card.Footer>{`${moment
+            <Card.Footer>{`${props.round} | ${moment
               .unix(props.eventTimestamp)
               .format("DD MMMM YYYY, h:mm uur")}`}</Card.Footer>
           </Card>

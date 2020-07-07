@@ -14,9 +14,10 @@ export default function Voorspellingen() {
 
   const { userId } = params;
   // const userId = 1;
+  const roundNr = 1;
 
   useEffect(() => {
-    dispatch(fetchMatchesAndPredictions(userId));
+    dispatch(fetchMatchesAndPredictions(userId, roundNr));
     dispatch(fetchScores());
   }, [dispatch]);
 
@@ -55,6 +56,7 @@ export default function Voorspellingen() {
   return (
     <div>
       <h1>Voorspellingen</h1>
+      <div></div>
       {/* <Button>Sla alle voorspellingen op</Button> */}
       <div>{matchesToMatchCard}</div>
     </div>
