@@ -3,7 +3,10 @@ import moment from "moment";
 import logoDummy from "../images/logoDummy.png";
 import { ReactComponent as Clock } from "../images/clock.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { postPrediction } from "../../store/predictions/actions";
+import {
+  postPrediction,
+  changePrediction,
+} from "../../store/predictions/actions";
 import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
 import { selectScores } from "../../store/configs/selectors";
 import { calculateScore } from "../../config/helperScores";
@@ -14,16 +17,20 @@ export default function MatchCard(props) {
   const [goalsAwayTeam, setGoalsAwayTeam] = useState();
   const scores = useSelector(selectScores);
 
+  const id = props.predictions.map((prediction) => {
+    return prediction.id;
+  });
+
+  // console.log("id?", id[0]);
+
   const savePrediction = (event) => {
-    // if ((props.predictions = [])) {
-    dispatch(
-      postPrediction(goalsHomeTeam, goalsAwayTeam, 1, 1, props.fixtureId)
-    );
-    // } else {
-    //   dispatch(
-    //     changePrediction(goalsHomeTeam, goalsAwayTeam, 1, props.fixtureId)
-    //   );
-    // }
+    if (props.predictions.length === 0) {
+      dispatch(
+        postPrediction(goalsHomeTeam, goalsAwayTeam, 1, 1, props.fixtureId)
+      );
+    } else {
+      dispatch(changePrediction(goalsHomeTeam, goalsAwayTeam, id[0]));
+    }
   };
 
   const predGoalsHomeTeam = props.predictions.map((prediction) => {
@@ -69,7 +76,7 @@ export default function MatchCard(props) {
                   <Col>
                     <Form.Control
                       type="number"
-                      value={goalsHomeTeam}
+                      // value={goalsHomeTeam}
                       min="0"
                       defaultValue={predGoalsHomeTeam[0]}
                       onChange={(event) => setGoalsHomeTeam(event.target.value)}
@@ -79,7 +86,7 @@ export default function MatchCard(props) {
                     <Form.Control
                       type="number"
                       min="0"
-                      value={goalsAwayTeam}
+                      // value={goalsAwayTeam}
                       defaultValue={predGoalsAwayTeam[0]}
                       onChange={(event) => setGoalsAwayTeam(event.target.value)}
                     />

@@ -43,13 +43,12 @@ export const postPrediction = (
 export const changePrediction = (
   predGoalsHomeTeam,
   predGoalsAwayTeam,
-  userId,
-  fixtureId
+  predictionId
 ) => {
   return async (dispatch, getState) => {
     try {
       const response = await Axios.patch(
-        `${apiUrl}/predictions/${userId}/${fixtureId}`,
+        `${apiUrl}/predictions/prediction/${predictionId}`,
         {
           predGoalsHomeTeam,
           predGoalsAwayTeam,

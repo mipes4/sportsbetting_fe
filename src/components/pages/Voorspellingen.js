@@ -4,6 +4,7 @@ import { fetchMatchesAndPredictions } from "../../store/matches/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMatches } from "../../store/matches/selectors";
 import { fetchScores } from "../../store/configs/actions";
+import { Button } from "react-bootstrap";
 
 export default function Voorspellingen() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ export default function Voorspellingen() {
   return (
     <div>
       <h1>Voorspellingen</h1>
+      <Button>Sla voorspellingen op</Button>
       <div>{matchesToMatchCard}</div>
     </div>
   );
