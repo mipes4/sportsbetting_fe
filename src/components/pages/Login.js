@@ -36,29 +36,29 @@ export default function Login() {
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
         <h1 className="mt-5 mb-5">Login</h1>
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Emailadres</Form.Label>
           <Form.Control
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             type="email"
-            placeholder="Enter email"
+            placeholder="Vul emailadres in"
             required
           />
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Wachtwoord</Form.Label>
           <Form.Control
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             type="password"
-            placeholder="Password"
+            placeholder="Wachtwoord"
             required
           />
         </Form.Group>
         <Form.Group className="mt-5">
           <Button variant="primary" type="submit" onClick={submitForm}>
-            Log in
+            Inloggen
           </Button>
         </Form.Group>
         <Link to="/signup" style={{ textAlign: "center" }}>

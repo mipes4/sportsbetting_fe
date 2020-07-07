@@ -7,6 +7,8 @@ import Voorspellingen from "./components/pages/Voorspellingen";
 import Regels from "./components/pages/Regels";
 import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
+import Profiel from "./components/pages/Profiel";
+import Admin from "./components/pages/Admin";
 import NavigationComponent from "./components/navigation/NavigationComponent";
 import MessageBox from "./components/messageBox/MessageBox";
 import Loading from "./components/loading/Loading";
@@ -33,6 +35,8 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/voorspellingen" component={Voorspellingen} />
         <Route path="/regels" component={Regels} />
+        <Route path="/profiel" component={Profiel} />
+        <Route path="/admin" component={Admin} />
       </Switch>
     </div>
   );
