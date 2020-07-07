@@ -5,13 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectMatches } from "../../store/matches/selectors";
 import { fetchScores } from "../../store/configs/actions";
 import { Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 export default function Voorspellingen() {
   const dispatch = useDispatch();
   const matches = useSelector(selectMatches);
+  const params = useParams();
+
+  const { userId } = params;
+  // const userId = 1;
 
   useEffect(() => {
-    dispatch(fetchMatchesAndPredictions());
+    dispatch(fetchMatchesAndPredictions(userId));
     dispatch(fetchScores());
   }, [dispatch]);
 
@@ -50,7 +55,7 @@ export default function Voorspellingen() {
   return (
     <div>
       <h1>Voorspellingen</h1>
-      <Button>Sla voorspellingen op</Button>
+      {/* <Button>Sla alle voorspellingen op</Button> */}
       <div>{matchesToMatchCard}</div>
     </div>
   );

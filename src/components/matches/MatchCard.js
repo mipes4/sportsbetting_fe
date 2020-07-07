@@ -10,12 +10,15 @@ import {
 import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
 import { selectScores } from "../../store/configs/selectors";
 import { calculateScore } from "../../config/helperScores";
+import { useParams } from "react-router-dom";
 
 export default function MatchCard(props) {
   const dispatch = useDispatch();
   const [goalsHomeTeam, setGoalsHomeTeam] = useState();
   const [goalsAwayTeam, setGoalsAwayTeam] = useState();
   const scores = useSelector(selectScores);
+  const params = useParams();
+  // console.log("What are my params?", params.userId);
 
   const id = props.predictions.map((prediction) => {
     return prediction.id;
@@ -26,7 +29,13 @@ export default function MatchCard(props) {
   const savePrediction = (event) => {
     if (props.predictions.length === 0) {
       dispatch(
-        postPrediction(goalsHomeTeam, goalsAwayTeam, 1, 1, props.fixtureId)
+        postPrediction(
+          goalsHomeTeam,
+          goalsAwayTeam,
+          params.userId,
+          1,
+          props.fixtureId
+        )
       );
     } else {
       dispatch(changePrediction(goalsHomeTeam, goalsAwayTeam, id[0]));

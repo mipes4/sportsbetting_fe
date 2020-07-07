@@ -8,10 +8,8 @@ export function dataFullyFetched(data) {
   return { type: ADD_MATCHES, payload: data };
 }
 
-export function fetchMatchesAndPredictions() {
+export function fetchMatchesAndPredictions(userId) {
   return async (dispatch, getState) => {
-    // Hardcoded userId for now
-    const userId = 1;
     try {
       const response = await Axios.get(`${apiUrl}/matches/user/${userId}`);
       dispatch(dataFullyFetched(response.data));
