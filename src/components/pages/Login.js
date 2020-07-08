@@ -21,8 +21,10 @@ export default function Login() {
     }
   }, [token, history]);
 
+  console.log("What is password?", password);
+
   function submitForm(event) {
-    console.log("hi");
+    // console.log("hi");
     event.preventDefault();
 
     dispatch(login(email, password));

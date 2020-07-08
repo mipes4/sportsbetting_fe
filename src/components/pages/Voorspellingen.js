@@ -8,6 +8,7 @@ import { fetchScores, fetchRounds } from "../../store/configs/actions";
 import { Button } from "react-bootstrap";
 import { useParams, useHistory } from "react-router-dom";
 import RoundCard from "../matches/RoundCard";
+import { appLoading } from "../../store/appState/actions";
 
 export default function Voorspellingen() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function Voorspellingen() {
     }
   }, [token, history]);
 
-  if (!matches) return <p>Loading...</p>;
+  if (!matches) return dispatch(appLoading());
 
   const compareMatches = (matchA, matchB) => {
     return matchB.eventTimeStamp - matchA.eventTimeStamp;

@@ -12,6 +12,7 @@ import { selectScores } from "../../store/configs/selectors";
 import { calculateScore } from "../../config/helperScores";
 import { useParams } from "react-router-dom";
 import RoundCard from "./RoundCard";
+import { appLoading } from "../../store/appState/actions";
 
 export default function MatchCard(props) {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ export default function MatchCard(props) {
 
   const savePrediction = (event) => {
     event.preventDefault();
+    dispatch(appLoading());
     if (props.predictions.length === 0) {
       dispatch(
         postPrediction(
