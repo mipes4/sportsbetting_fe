@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Accordion, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { selectToken } from "../../store/user/selectors";
+import { useHistory } from "react-router-dom";
 
 export default function Regels() {
+  const token = useSelector(selectToken);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (token === null) {
+      history.push("/login");
+    }
+  }, [token, history]);
+
   return (
     <Accordion defaultActiveKey="0">
       <Card>
