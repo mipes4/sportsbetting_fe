@@ -1,6 +1,9 @@
-import { ADD_SCORES } from "./actions";
+import { ADD_SCORES, ADD_ROUNDS } from "./actions";
 
-const initialState = {};
+const initialState = {
+  scores: [],
+  rounds: null,
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -11,7 +14,15 @@ export default (state = initialState, action) => {
       //   "payload:",
       //   action.payload
       // );
-      return { ...action.payload };
+      return { ...state, scores: action.payload };
+    case ADD_ROUNDS:
+      // console.log(
+      //   "reducer mathes? type:",
+      //   action.type,
+      //   "payload:",
+      //   action.payload
+      // );
+      return { ...state, rounds: action.payload };
 
     default:
       return state;
