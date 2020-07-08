@@ -3,14 +3,18 @@ import MatchCard from "../matches/MatchCard";
 import { fetchMatchesAndPredictions } from "../../store/matches/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMatches } from "../../store/matches/selectors";
-import { fetchScores } from "../../store/configs/actions";
+import { selectToken } from "../../store/user/selectors";
+import { fetchScores, fetchRounds } from "../../store/configs/actions";
 import { Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import RoundCard from "../matches/RoundCard";
 
 export default function Voorspellingen() {
   const dispatch = useDispatch();
   const matches = useSelector(selectMatches);
   const params = useParams();
+  const token = useSelector(selectToken);
+  const history = useHistory();
 
   const { userId } = params;
   // const userId = 1;
@@ -19,7 +23,14 @@ export default function Voorspellingen() {
   useEffect(() => {
     dispatch(fetchMatchesAndPredictions(userId, roundNr));
     dispatch(fetchScores());
+    // dispatch(fetchRounds());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (token === null) {
+      history.push("/login");
+    }
+  }, [token, history]);
 
   if (!matches) return <p>Loading...</p>;
 
@@ -58,7 +69,8 @@ export default function Voorspellingen() {
       <h1>Voorspellingen</h1>
       <div></div>
       {/* <Button>Sla alle voorspellingen op</Button> */}
-      <div>{matchesToMatchCard}</div>
+      {/* <RoundCard /> */}
+      <div style={{ margin: "100px" }}>{matchesToMatchCard}</div>
     </div>
   );
 }
