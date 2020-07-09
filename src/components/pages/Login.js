@@ -17,12 +17,12 @@ export default function Login() {
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/login");
+      history.push("/");
     }
   }, [token, history]);
 
   function submitForm(event) {
-    console.log("hi");
+    // console.log("hi");
     event.preventDefault();
 
     dispatch(login(email, password));

@@ -8,6 +8,7 @@ import { selectUser } from "../../store/user/selectors";
 export default function LoggedIn() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+
   return (
     <>
       <Nav variant="pills" style={{ width: "100%" }} fill>

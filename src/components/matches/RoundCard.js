@@ -1,13 +1,15 @@
 import React from "react";
 import { selectRounds } from "../../store/configs/selectors";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Accordion, Card, Button } from "react-bootstrap";
 import MatchCard from "./MatchCard";
+import { appLoading } from "../../store/appState/actions";
 
 export default function RoundCard() {
+  const dispatch = useDispatch();
   const rounds = useSelector(selectRounds);
 
-  if (!rounds) return <p>Loading...</p>;
+  if (!rounds) return dispatch(appLoading());
 
   // console.log("What is rounds?", rounds);
   const roundNr = rounds.map((round) => {

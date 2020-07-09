@@ -7,11 +7,20 @@ import {
   postPrediction,
   changePrediction,
 } from "../../store/predictions/actions";
-import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  Row,
+  Col,
+  Container,
+  Form,
+  InputGroup,
+} from "react-bootstrap";
 import { selectScores } from "../../store/configs/selectors";
 import { calculateScore } from "../../config/helperScores";
 import { useParams } from "react-router-dom";
 import RoundCard from "./RoundCard";
+import { appLoading } from "../../store/appState/actions";
 
 export default function MatchCard(props) {
   const dispatch = useDispatch();
@@ -29,6 +38,7 @@ export default function MatchCard(props) {
 
   const savePrediction = (event) => {
     event.preventDefault();
+    dispatch(appLoading());
     if (props.predictions.length === 0) {
       dispatch(
         postPrediction(
@@ -67,12 +77,12 @@ export default function MatchCard(props) {
   return (
     <Container fluid>
       <Row style={{ alignItems: "center" }}>
-        <Col xl="3" style={{ textAlign: "left", flexWrap: "nowrap" }}>
+        <Col md={2} style={{ textAlign: "left", flexWrap: "nowrap" }}>
           {`${props.round} | ${moment
             .unix(props.eventTimestamp)
             .format("DD MMMM YYYY, h:mm uur")}`}
         </Col>
-        <Col xs="1">
+        <Col xs={1}>
           <img
             style={{ width: "10px", height: "10px" }}
             src={
@@ -82,40 +92,46 @@ export default function MatchCard(props) {
             }
           />
         </Col>
-        <Col xs="1">{props.homeTeamName}</Col>
+        <Col>{props.homeTeamName}</Col>
 
-        <Col xl="1">
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Form.Control
-              style={{ width: "60px" }}
-              type="number"
-              min="0"
-              defaultValue={predGoalsHomeTeam[0]}
-              onChange={(event) => setGoalsHomeTeam(event.target.value)}
-              disabled={
-                Math.floor(Date.now() / 1000) > props.eventTimestamp - 300
-                  ? true
-                  : false
-              }
-            />
-            &nbsp;&nbsp;-&nbsp;&nbsp;
-            <Form.Control
-              style={{ width: "60px" }}
-              type="number"
-              min="0"
-              defaultValue={predGoalsAwayTeam[0]}
-              onChange={(event) => setGoalsAwayTeam(event.target.value)}
-              disabled={
-                Math.floor(Date.now() / 1000) > props.eventTimestamp - 300
-                  ? true
-                  : false
-              }
-            />
-          </div>
-        </Col>
+        <Form>
+          <Form.Row>
+            <Col>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Form.Control
+                  size="sm"
+                  style={{ width: "60px" }}
+                  type="number"
+                  min="0"
+                  defaultValue={predGoalsHomeTeam[0]}
+                  onChange={(event) => setGoalsHomeTeam(event.target.value)}
+                  disabled={
+                    Math.floor(Date.now() / 1000) > props.eventTimestamp - 300
+                      ? true
+                      : false
+                  }
+                />
+                &nbsp;&nbsp;-&nbsp;&nbsp;
+                <Form.Control
+                  size="sm"
+                  style={{ width: "60px" }}
+                  type="number"
+                  min="0"
+                  defaultValue={predGoalsAwayTeam[0]}
+                  onChange={(event) => setGoalsAwayTeam(event.target.value)}
+                  disabled={
+                    Math.floor(Date.now() / 1000) > props.eventTimestamp - 300
+                      ? true
+                      : false
+                  }
+                />
+              </div>
+            </Col>
+          </Form.Row>
+        </Form>
 
-        <Col xs="1">{props.awayTeamName}</Col>
-        <Col xs="1">
+        <Col>{props.awayTeamName}</Col>
+        <Col>
           <img
             style={{ width: "10px", height: "10px" }}
             src={
@@ -126,7 +142,7 @@ export default function MatchCard(props) {
           />
         </Col>
 
-        <Col xs="1">
+        <Col>
           <Button type="submit" onClick={savePrediction}>
             Save
           </Button>
@@ -134,7 +150,7 @@ export default function MatchCard(props) {
         <Col>
           <Clock />
         </Col>
-        <Col xl="1">
+        <Col>
           {Math.floor(Date.now() / 1000) > props.eventTimestamp - 300
             ? "Voorspellingen gesloten"
             : moment.unix(props.eventTimestamp).startOf("minute").fromNow()}
