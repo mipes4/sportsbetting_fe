@@ -125,20 +125,21 @@ export const changeUser = (
   frontName,
   lastName,
   phoneNumber,
-  totaalToto,
-  password
+  totaalToto
+  // password
 ) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
       const response = await Axios.patch(`${apiUrl}/change_me/${userId}`, {
+        userId,
         username,
         email,
         frontName,
         lastName,
         phoneNumber,
         totaalToto,
-        password,
+        // password,
       });
       dispatch(loginSuccess(response.data));
       dispatch(

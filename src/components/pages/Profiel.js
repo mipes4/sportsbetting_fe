@@ -3,7 +3,7 @@ import { selectToken, selectUser } from "../../store/user/selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { changeUser } from "../../store/user/actions";
-import { Container, Form, Col, Button } from "react-bootstrap";
+import { Container, Form, Col, Button, Row } from "react-bootstrap";
 import { appLoading } from "../../store/appState/actions";
 
 export default function Profiel() {
@@ -25,9 +25,9 @@ export default function Profiel() {
     }
   }, [token, history]);
 
-  if (!user.email) return dispatch(appLoading());
+  if (!user.email) return <p>Loading...</p>;
 
-  console.log("What is user?", user.id);
+  // console.log("What is user?", user.id);
 
   // console.log(
   //   "What is my passing body?",
@@ -61,55 +61,80 @@ export default function Profiel() {
     <Container>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
         <h1 className="mt-5 mb-5">Profiel</h1>
-        <Form.Group controlId="formBasicFirstName">
-          <Form.Label>Voornaam</Form.Label>
-          <Form.Control
-            defaultValue={user.frontName}
-            type="text"
-            onChange={(event) => setFrontName(event.target.value)}
-          />
+        <Form.Group as={Row} controlId="formHorizontalFrontName">
+          <Form.Label column sm={3}>
+            Voornaam
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              defaultValue={user.frontName}
+              type="text"
+              onChange={(event) => setFrontName(event.target.value)}
+            />
+          </Col>
         </Form.Group>
-        <Form.Group controlId="formBasicLastName">
-          <Form.Label>Achternaam</Form.Label>
-          <Form.Control
-            defaultValue={user.lastName}
-            type="text"
-            onChange={(event) => setLastName(event.target.value)}
-          />
+        <Form.Group as={Row} controlId="formBasicLastName">
+          <Form.Label column sm={3}>
+            Achternaam
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              defaultValue={user.lastName}
+              type="text"
+              onChange={(event) => setLastName(event.target.value)}
+            />
+          </Col>
         </Form.Group>
-        <Form.Group controlId="formBasicUser">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            defaultValue={user.username}
-            type="text"
-            onChange={(event) => setUserName(event.target.value)}
-            required
-          />
+        <Form.Group as={Row} controlId="formBasicUser">
+          <Form.Label column sm={3}>
+            Username
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              defaultValue={user.username}
+              type="text"
+              onChange={(event) => setUserName(event.target.value)}
+              required
+            />
+          </Col>
         </Form.Group>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Emailadres</Form.Label>
-          <Form.Control defaultValue={user.email} type="email" required />
+        <Form.Group as={Row} controlId="formBasicEmail">
+          <Form.Label column sm={3}>
+            Emailadres
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control defaultValue={user.email} type="email" required />
+          </Col>
         </Form.Group>
-        <Form.Group controlId="formBasicPhone">
-          <Form.Label>Telefoonnummer</Form.Label>
-          <Form.Control
-            defaultValue={user.phoneNumber}
-            type="tel"
-            onChange={(event) => setPhone(event.target.value)}
-            required
-          />
+        <Form.Group as={Row} controlId="formBasicPhone">
+          <Form.Label column sm={3}>
+            Telefoonnummer
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              defaultValue={user.phoneNumber}
+              type="tel"
+              onChange={(event) => setPhone(event.target.value)}
+              required
+            />
+          </Col>
         </Form.Group>
-        <Form.Group controlId="formBasicToto">
-          <Form.Label>Ik doe mee met de totaaltoto</Form.Label>
-          <Form.Control
-            defaultChecked={user.totaalToto}
-            type="checkbox"
-            onChange={(event) => setTotaalToto(event.target.value)}
-          />
+        <Form.Group as={Row} controlId="formBasicToto">
+          <Col sm={{ span: 9, offset: 2 }}>
+            <Form.Check
+              label="Ik doe mee met de totaaltoto"
+              defaultChecked={user.totaalToto}
+              type="checkbox"
+              onChange={(event) => setTotaalToto(event.target.value)}
+            />
+          </Col>
         </Form.Group>
-        <Form.Group className="mt-5">
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Wachtwoord</Form.Label>
+
+        <Form.Group as={Row} controlId="formBasicPassword">
+          <Form.Label column sm={3}>
+            Wachtwoord
+          </Form.Label>
+          <Col sm={8}>
             <Form.Control
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -117,10 +142,14 @@ export default function Profiel() {
               placeholder="Wachtwoord"
               required
             />
-          </Form.Group>
-          <Button variant="primary" type="submit" onClick={submitForm}>
-            Sla mijn profiel op
-          </Button>
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mt-5">
+          <Col sm={{ span: 9, offset: 2 }}>
+            <Button variant="primary" type="submit" onClick={submitForm}>
+              Sla mijn profiel op
+            </Button>
+          </Col>
         </Form.Group>
       </Form>
     </Container>
