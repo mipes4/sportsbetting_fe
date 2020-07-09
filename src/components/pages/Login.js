@@ -33,8 +33,9 @@ export default function Login() {
 
   return (
     <Container>
+      <h1 className="mt-5 mb-5">Login</h1>
+
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-        <h1 className="mt-5 mb-5">Login</h1>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Emailadres</Form.Label>
           <Form.Control

@@ -59,10 +59,10 @@ export default function Profiel() {
 
   return (
     <Container>
+      <h1 className="mt-5 mb-5">Profiel</h1>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-        <h1 className="mt-5 mb-5">Profiel</h1>
         <Form.Group as={Row} controlId="formHorizontalFrontName">
-          <Form.Label column sm={3}>
+          <Form.Label style={{ textAlign: "left" }} column sm={3}>
             Voornaam
           </Form.Label>
           <Col sm={8}>
@@ -74,7 +74,7 @@ export default function Profiel() {
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formBasicLastName">
-          <Form.Label column sm={3}>
+          <Form.Label style={{ textAlign: "left" }} column sm={3}>
             Achternaam
           </Form.Label>
           <Col sm={8}>
@@ -86,7 +86,7 @@ export default function Profiel() {
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formBasicUser">
-          <Form.Label column sm={3}>
+          <Form.Label style={{ textAlign: "left" }} column sm={3}>
             Username
           </Form.Label>
           <Col sm={8}>
@@ -99,7 +99,7 @@ export default function Profiel() {
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formBasicEmail">
-          <Form.Label column sm={3}>
+          <Form.Label style={{ textAlign: "left" }} column sm={3}>
             Emailadres
           </Form.Label>
           <Col sm={8}>
@@ -107,7 +107,7 @@ export default function Profiel() {
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formBasicPhone">
-          <Form.Label column sm={3}>
+          <Form.Label style={{ textAlign: "left" }} column sm={3}>
             Telefoonnummer
           </Form.Label>
           <Col sm={8}>
@@ -131,7 +131,7 @@ export default function Profiel() {
         </Form.Group>
 
         <Form.Group as={Row} controlId="formBasicPassword">
-          <Form.Label column sm={3}>
+          <Form.Label style={{ textAlign: "left" }} column sm={3}>
             Wachtwoord
           </Form.Label>
           <Col sm={8}>

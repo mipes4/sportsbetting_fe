@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectMatches } from "../../store/matches/selectors";
 import { selectToken } from "../../store/user/selectors";
 import { fetchScores, fetchRounds } from "../../store/configs/actions";
-import { Button, Col, Container } from "react-bootstrap";
+import { Button, Col, Container, Table } from "react-bootstrap";
 import { useParams, useHistory } from "react-router-dom";
 import RoundCard from "../matches/RoundCard";
 import { appLoading } from "../../store/appState/actions";
@@ -66,14 +66,22 @@ export default function Voorspellingen() {
   // console.log("What is matches?", matches);
 
   return (
-    <div>
+    <Container md={{ span: 10, offset: 1 }}>
       <h1>Voorspellingen</h1>
-      <div></div>
+      {/* <div></div> */}
       {/* <Button>Sla alle voorspellingen op</Button> */}
       {/* <RoundCard /> */}
-      <Container as={Col} md={{ span: 8, offset: 2 }}>
-        {matchesToMatchCard}
-      </Container>
-    </div>
+      <Table
+        style={{ fontSize: 12, textAlign: "left", verticalAlign: "middle" }}
+        striped
+        bordered
+        hover
+        variant="dark"
+        size="sm"
+        responsive="xl"
+      >
+        <tbody> {matchesToMatchCard}</tbody>
+      </Table>
+    </Container>
   );
 }
