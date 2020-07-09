@@ -82,7 +82,7 @@ export default function MatchCard(props) {
         .format("DD MMMM YYYY, h:mm uur")}`}</td>
       <td style={{ textAlign: "center", verticalAlign: "middle" }}>
         <img
-          style={{ width: "14px", height: "14px" }}
+          style={{ width: "20px", height: "20px" }}
           src={
             props.homeTeamLogo === "Not available in demo"
               ? logoDummy
@@ -134,11 +134,11 @@ export default function MatchCard(props) {
       <td style={{ verticalAlign: "middle" }}>{props.awayTeamName}</td>
       <td style={{ textAlign: "center", verticalAlign: "middle" }}>
         <img
-          style={{ width: "14px", height: "14px" }}
+          style={{ width: "20px", height: "20px" }}
           src={
-            props.homeTeamLogo === "Not available in demo"
+            props.awayTeamLogo === "Not available in demo"
               ? logoDummy
-              : props.homeTeamLogo
+              : props.awayTeamLogo
           }
         />
       </td>
