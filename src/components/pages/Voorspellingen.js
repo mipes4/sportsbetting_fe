@@ -72,7 +72,7 @@ export default function Voorspellingen() {
       {/* <Button>Sla alle voorspellingen op</Button> */}
       {/* <RoundCard /> */}
       <Table
-        style={{ fontSize: 12, textAlign: "left" }}
+        style={{ fontSize: 12, textAlign: "left", verticalAlign: "middle" }}
         striped
         bordered
         hover
