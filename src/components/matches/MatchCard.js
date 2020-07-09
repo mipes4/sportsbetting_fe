@@ -15,6 +15,7 @@ import {
   Container,
   Form,
   InputGroup,
+  Table,
 } from "react-bootstrap";
 import { selectScores } from "../../store/configs/selectors";
 import { calculateScore } from "../../config/helperScores";
@@ -75,25 +76,25 @@ export default function MatchCard(props) {
   console.log(Math.floor(Date.now() / 1000));
 
   return (
-    <Container fluid>
-      <Row style={{ alignItems: "center" }}>
-        <Col md={2} style={{ textAlign: "left", flexWrap: "nowrap" }}>
-          {`${props.round} | ${moment
-            .unix(props.eventTimestamp)
-            .format("DD MMMM YYYY, h:mm uur")}`}
-        </Col>
-        <Col xs={1}>
-          <img
-            style={{ width: "10px", height: "10px" }}
-            src={
-              props.homeTeamLogo === "Not available in demo"
-                ? logoDummy
-                : props.homeTeamLogo
-            }
-          />
-        </Col>
-        <Col>{props.homeTeamName}</Col>
-
+    <tr>
+      <td style={{ verticalAlign: "middle" }}>{`${props.round} | ${moment
+        .unix(props.eventTimestamp)
+        .format("DD MMMM YYYY, h:mm uur")}`}</td>
+      <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+        <img
+          style={{ width: "14px", height: "14px" }}
+          src={
+            props.homeTeamLogo === "Not available in demo"
+              ? logoDummy
+              : props.homeTeamLogo
+          }
+        />
+      </td>
+      <td style={{ textAlign: "right", verticalAlign: "middle" }}>
+        {props.homeTeamName}
+      </td>
+      <td>
+        {" "}
         <Form>
           <Form.Row>
             <Col>
@@ -129,41 +130,40 @@ export default function MatchCard(props) {
             </Col>
           </Form.Row>
         </Form>
+      </td>
+      <td style={{ verticalAlign: "middle" }}>{props.awayTeamName}</td>
+      <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+        <img
+          style={{ width: "14px", height: "14px" }}
+          src={
+            props.homeTeamLogo === "Not available in demo"
+              ? logoDummy
+              : props.homeTeamLogo
+          }
+        />
+      </td>
+      <td style={{ textAlign: "center", verticalAlign: "middle" }}>
+        <Button type="submit" onClick={savePrediction}>
+          Save
+        </Button>
+      </td>
+      <td style={{ verticalAlign: "middle" }}>
+        <Clock /> &nbsp;&nbsp;
+        {Math.floor(Date.now() / 1000) > props.eventTimestamp - 300
+          ? "Voorspellingen gesloten"
+          : moment.unix(props.eventTimestamp).startOf("minute").fromNow()}
+      </td>
 
-        <Col>{props.awayTeamName}</Col>
-        <Col>
-          <img
-            style={{ width: "10px", height: "10px" }}
-            src={
-              props.homeTeamLogo === "Not available in demo"
-                ? logoDummy
-                : props.homeTeamLogo
-            }
-          />
-        </Col>
-
-        <Col>
-          <Button type="submit" onClick={savePrediction}>
-            Save
-          </Button>
-        </Col>
-        <Col>
-          <Clock />
-        </Col>
-        <Col>
-          {Math.floor(Date.now() / 1000) > props.eventTimestamp - 300
-            ? "Voorspellingen gesloten"
-            : moment.unix(props.eventTimestamp).startOf("minute").fromNow()}
-        </Col>
-        <Col>
-          {props.status === "FT" && props.predictions[0] ? (
-            <p>{`Score: ${totalScore}`}</p>
-          ) : (
-            <p>geen score</p>
-          )}
-        </Col>
-        <Col>{`${props.goalsHomeTeam} - ${props.goalsAwayTeam} `}</Col>
-      </Row>
-    </Container>
+      {props.status === "FT" && props.predictions[0] ? (
+        <td
+          style={{ fontSize: 14, verticalAlign: "middle", fontWeight: "bold" }}
+        >{`Score: ${totalScore}`}</td>
+      ) : (
+        <td style={{ verticalAlign: "middle" }}>geen score</td>
+      )}
+      <td
+        style={{ verticalAlign: "middle" }}
+      >{`Uitslag: ${props.goalsHomeTeam} - ${props.goalsAwayTeam} `}</td>
+    </tr>
   );
 }
