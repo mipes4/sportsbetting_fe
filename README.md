@@ -75,6 +75,9 @@ As a user of the Sports betting app you can create predictions on the matches in
 
 ## :sparkles::sparkles: DEMO :sparkles::sparkles:
 
+[[src/components/images/demo_app.gif | width=100px | alt=Demo]]
+![Demo of Sports betting app](demo_app.gif)
+
 ## SETUP :electric_plug:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
