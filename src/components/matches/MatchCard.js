@@ -39,7 +39,7 @@ export default function MatchCard(props) {
 
   const savePrediction = (event) => {
     event.preventDefault();
-    dispatch(appLoading());
+    // dispatch(appLoading());
     if (props.predictions.length === 0) {
       dispatch(
         postPrediction(
@@ -154,16 +154,22 @@ export default function MatchCard(props) {
           : moment.unix(props.eventTimestamp).startOf("minute").fromNow()}
       </td>
 
-      {props.status === "FT" && props.predictions[0] ? (
+      {props.status === "CANC" ? (
+        <td style={{ verticalAlign: "middle" }}>Geannuleerd</td>
+      ) : (
         <td
           style={{ fontSize: 14, verticalAlign: "middle", fontWeight: "bold" }}
-        >{`Score: ${totalScore}`}</td>
-      ) : (
-        <td style={{ verticalAlign: "middle" }}>geen score</td>
+        >
+          {props.goalsHomeTeam === null || props.status === "CANC"
+            ? ""
+            : `Score: ${totalScore}`}
+        </td>
       )}
-      <td
-        style={{ verticalAlign: "middle" }}
-      >{`Uitslag: ${props.goalsHomeTeam} - ${props.goalsAwayTeam} `}</td>
+      <td style={{ verticalAlign: "middle" }}>
+        {props.goalsHomeTeam === null
+          ? ""
+          : `Uitslag: ${props.goalsHomeTeam} - ${props.goalsAwayTeam} `}
+      </td>
     </tr>
   );
 }
