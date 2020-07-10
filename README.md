@@ -76,7 +76,8 @@ As a user of the Sports betting app you can create predictions on the matches in
 ## :sparkles::sparkles: DEMO :sparkles::sparkles:
 
 [[src/components/images/demo_app.gif | width=100px | alt=Demo]]
-![Demo of Sports betting app](demo_app.gif)
+![Demo of Sports betting app][demo]
+[demo]: src/components/images/demo_app.gif
 
 ## SETUP :electric_plug:
 
