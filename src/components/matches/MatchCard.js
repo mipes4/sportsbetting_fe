@@ -39,7 +39,7 @@ export default function MatchCard(props) {
 
   const savePrediction = (event) => {
     event.preventDefault();
-    dispatch(appLoading());
+    // dispatch(appLoading());
     if (props.predictions.length === 0) {
       dispatch(
         postPrediction(
@@ -82,7 +82,7 @@ export default function MatchCard(props) {
         .format("DD MMMM YYYY, h:mm uur")}`}</td>
       <td style={{ textAlign: "center", verticalAlign: "middle" }}>
         <img
-          style={{ width: "14px", height: "14px" }}
+          style={{ width: "20px", height: "20px" }}
           src={
             props.homeTeamLogo === "Not available in demo"
               ? logoDummy
@@ -134,11 +134,11 @@ export default function MatchCard(props) {
       <td style={{ verticalAlign: "middle" }}>{props.awayTeamName}</td>
       <td style={{ textAlign: "center", verticalAlign: "middle" }}>
         <img
-          style={{ width: "14px", height: "14px" }}
+          style={{ width: "20px", height: "20px" }}
           src={
-            props.homeTeamLogo === "Not available in demo"
+            props.awayTeamLogo === "Not available in demo"
               ? logoDummy
-              : props.homeTeamLogo
+              : props.awayTeamLogo
           }
         />
       </td>
@@ -154,16 +154,22 @@ export default function MatchCard(props) {
           : moment.unix(props.eventTimestamp).startOf("minute").fromNow()}
       </td>
 
-      {props.status === "FT" && props.predictions[0] ? (
+      {props.status === "CANC" ? (
+        <td style={{ verticalAlign: "middle" }}>Geannuleerd</td>
+      ) : (
         <td
           style={{ fontSize: 14, verticalAlign: "middle", fontWeight: "bold" }}
-        >{`Score: ${totalScore}`}</td>
-      ) : (
-        <td style={{ verticalAlign: "middle" }}>geen score</td>
+        >
+          {props.goalsHomeTeam === null || props.status === "CANC"
+            ? ""
+            : `Score: ${totalScore}`}
+        </td>
       )}
-      <td
-        style={{ verticalAlign: "middle" }}
-      >{`Uitslag: ${props.goalsHomeTeam} - ${props.goalsAwayTeam} `}</td>
+      <td style={{ verticalAlign: "middle" }}>
+        {props.goalsHomeTeam === null
+          ? ""
+          : `Uitslag: ${props.goalsHomeTeam} - ${props.goalsAwayTeam} `}
+      </td>
     </tr>
   );
 }

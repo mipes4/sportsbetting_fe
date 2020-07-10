@@ -145,7 +145,7 @@ export const changeUser = (
       dispatch(
         showMessageWithTimeout(
           "success",
-          false,
+          true,
           "Je profiel is aangepast!",
           1500
         )

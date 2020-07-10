@@ -66,7 +66,7 @@ export default function Voorspellingen() {
   // console.log("What is matches?", matches);
 
   return (
-    <Container md={{ span: 10, offset: 1 }}>
+    <Container md={{ span: 11, offset: 0.5 }}>
       <h1>Voorspellingen</h1>
       {/* <div></div> */}
       {/* <Button>Sla alle voorspellingen op</Button> */}
