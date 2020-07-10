@@ -1,6 +1,6 @@
 # Sports betting app :soccer:
 
-## Table of contents
+### Table of contents
 
 - [ABOUT](#about)
 - [THE APP](#the-app)
@@ -10,20 +10,21 @@
 - [DEMO](#demo)
 - [SETUP](#setup)
 
-### ABOUT :womens:
+## ABOUT :woman_cartwheeling:
 
 Hello! My name is Michelle and this is the portfolio project that I'm creating during my studies at [Codaisseur](https://github.com/Codaisseur). It's a sports betting app, specially made for my brother. It's purely for entertainment purposes for him and his friends during the Eredivisie league. The fun part is, I don't even like football/ soccer (don't want to start a discussion on the correct terminology of the sport :v:), I just love my brother (and I like to build apps).
 
-### THE APP :soccer:
+## THE APP :soccer:
 
-Is an MVP, not a final version. The beginning of the web app is there, but there is so much more on my wishlist. Take a look at my [projectboard](https://github.com/users/mipes4/projects/1) to know what is going to be done in the future.
+The Sports betting app is an MVP, not a final version. The beginning of the web app is there, but there is so much more on my wishlist. Take a look at my [projectboard](https://github.com/users/mipes4/projects/1) to know what is going to be done in the future.
 
 As a user of the Sports betting app you can create predictions on the matches in the upcoming rounds of the Eredivisie and earn points with (partially) right predictions. There is a winner per round and a winner of the entire season if a player opted in for the 'Totaaltoto'.
 
 - [Wireframe](https://sportsbetting-mp.netlify.app/)
 - [UML diagram](https://app.lucidchart.com/invitations/accept/8e144874-00d5-4771-8025-ca02ef440cc1)
+- [Back End Repo](https://github.com/mipes4/sportsbetting_be)
 
-### GOALS :goal_net:
+## GOALS :goal_net:
 
 - Practice full-stack development
 - Apply what I've learned so far
@@ -38,7 +39,7 @@ As a user of the Sports betting app you can create predictions on the matches in
   - Plan a project and work with user stories and tasks
   - Work with version controle like a pro
 
-### USER STORIES :books:
+## USER STORIES :bookmark_tabs:
 
 - As a user interested in football and Eredivisie I want to do my sports bets of the Eredivisie among frieds, so we can make the matches more fun to watch and maybe win a little money.
 - As a user of the sports betting web app I need to know the game rules so I know how to earn points and money.
@@ -50,7 +51,7 @@ As a user of the Sports betting app you can create predictions on the matches in
 - As a user who has a shared interest of football and Eredivisie I'd like to chat with my friends about it.
 - As a user who wants to join this Sports betting group of friends for multiple seasons I would like to have a history of the Eredivisie league with bets and scores that I can look into.
 
-### TECHNOLOGIES :floppy_disk:
+## TECHNOLOGIES :hammer_and_wrench:
 
 **Front End**
 
@@ -72,17 +73,21 @@ As a user of the Sports betting app you can create predictions on the matches in
 - Postgres
 - Middleware
 
-### :fireworks::soccer: DEMO :soccer::fireworks:
+## :sparkles::sparkles: DEMO :sparkles::sparkles:
 
-### SETUP
+![Demo of Sports betting app](Demo/demo_app.gif)
+
+## SETUP :electric_plug:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#### Available Scripts
+**Look for the server side of this project at the [Back End repo](https://github.com/mipes4/sportsbetting_be)**
+
+### Available Scripts
 
 In the project directory, you can run:
 
-##### `npm start`
+#### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -90,12 +95,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-##### `npm test`
+#### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-##### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -105,7 +110,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-##### `npm run eject`
+#### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -115,10 +120,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-##### `npm run build` fails to minify
+#### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-# REMOVE Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
