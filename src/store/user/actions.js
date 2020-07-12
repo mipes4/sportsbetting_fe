@@ -62,7 +62,7 @@ export const signUp = (name, email, password) => {
 
 export const login = (email, password) => {
   return async (dispatch, getState) => {
-    console.log("What is apiUrl?", apiUrl);
+    // console.log("What is apiUrl?", apiUrl);
 
     dispatch(appLoading());
     try {
