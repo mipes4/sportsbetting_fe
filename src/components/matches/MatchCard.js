@@ -160,7 +160,9 @@ export default function MatchCard(props) {
         <td
           style={{ fontSize: 14, verticalAlign: "middle", fontWeight: "bold" }}
         >
-          {props.goalsHomeTeam === null || props.status === "CANC"
+          {props.goalsHomeTeam === null ||
+          props.status === "CANC" ||
+          predGoalsAwayTeam[0] === undefined
             ? ""
             : `Score: ${totalScore}`}
         </td>
