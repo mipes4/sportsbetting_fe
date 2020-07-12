@@ -20,8 +20,8 @@ The Sports betting app is an MVP, not a final version. The beginning of the web 
 
 As a user of the Sports betting app you can create predictions on the matches in the upcoming rounds of the Eredivisie and earn points with (partially) right predictions. There is a winner per round and a winner of the entire season if a player opted in for the 'Totaaltoto'.
 
+- [Projectboard](https://github.com/users/mipes4/projects/1)
 - [Wireframe](https://sportsbetting-mp.netlify.app/)
-- [UML diagram](https://app.lucidchart.com/invitations/accept/8e144874-00d5-4771-8025-ca02ef440cc1)
 - [Back End Repo](https://github.com/mipes4/sportsbetting_be)
 
 ## GOALS :goal_net:
