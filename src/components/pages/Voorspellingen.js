@@ -3,6 +3,7 @@ import MatchCard from "../matches/MatchCard";
 import { fetchMatchesAndPredictions } from "../../store/matches/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMatches } from "../../store/matches/selectors";
+import { selectUser } from "../../store/user/selectors";
 import { selectToken } from "../../store/user/selectors";
 import { fetchScores, fetchRounds } from "../../store/configs/actions";
 import { Button, Col, Container, Table } from "react-bootstrap";
@@ -16,13 +17,16 @@ export default function Voorspellingen() {
   const params = useParams();
   const token = useSelector(selectToken);
   const history = useHistory();
+  const user = useSelector(selectUser);
 
-  const { userId } = params;
+  console.log("What is user?", user.id);
+
+  // const { userId } = params;
   // const userId = 1;
-  const roundNr = 1;
+  // const roundNr = 1;
 
   useEffect(() => {
-    dispatch(fetchMatchesAndPredictions(userId, roundNr));
+    dispatch(fetchMatchesAndPredictions(user.id));
     dispatch(fetchScores());
     // dispatch(fetchRounds());
   }, [dispatch]);
