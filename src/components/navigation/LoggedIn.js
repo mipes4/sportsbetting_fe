@@ -12,10 +12,7 @@ export default function LoggedIn() {
   return (
     <>
       <Nav variant="pills" style={{ width: "100%" }} fill>
-        <NavbarItem
-          path={`/voorspellingen/${user.id}`}
-          linkText="Voorspellingen"
-        />
+        <NavbarItem path={`/voorspellingen`} linkText="Voorspellingen" />
         <NavbarItem path="/regels" linkText="Regels" />
       </Nav>
       <Nav>

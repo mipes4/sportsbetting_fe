@@ -7,33 +7,25 @@ import {
   postPrediction,
   changePrediction,
 } from "../../store/predictions/actions";
-import {
-  Card,
-  Button,
-  Row,
-  Col,
-  Container,
-  Form,
-  InputGroup,
-  Table,
-} from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { selectScores } from "../../store/configs/selectors";
 import { calculateScore } from "../../config/helperScores";
 import { useParams } from "react-router-dom";
-import RoundCard from "./RoundCard";
-import { appLoading } from "../../store/appState/actions";
+import { selectUser } from "../../store/user/selectors";
 
 export default function MatchCard(props) {
   const dispatch = useDispatch();
   const [goalsHomeTeam, setGoalsHomeTeam] = useState();
   const [goalsAwayTeam, setGoalsAwayTeam] = useState();
   const scores = useSelector(selectScores);
-  const params = useParams();
+  // const params = useParams();
+  const user = useSelector(selectUser);
+
   // console.log("What are my params?", params.userId);
 
-  const id = props.predictions.map((prediction) => {
-    return prediction.id;
-  });
+  // const id = props.predictions.map((prediction) => {
+  //   return prediction.id;
+  // });
 
   // console.log("What is timestamp?", props.eventTimestamp);
 
@@ -45,13 +37,13 @@ export default function MatchCard(props) {
         postPrediction(
           goalsHomeTeam,
           goalsAwayTeam,
-          params.userId,
+          user.id,
           1,
           props.fixtureId
         )
       );
     } else {
-      dispatch(changePrediction(goalsHomeTeam, goalsAwayTeam, id[0]));
+      dispatch(changePrediction(goalsHomeTeam, goalsAwayTeam, user.id));
     }
   };
 
@@ -63,17 +55,18 @@ export default function MatchCard(props) {
     return prediction.predGoalsAwayTeam;
   });
 
-  if (!scores[0]) return <p>Loading...</p>;
+  if (!scores[0])
+    return (
+      <tr>
+        <td>Loading...</td>
+      </tr>
+    );
 
   const totalScore = calculateScore(
     { homeTeam: props.goalsHomeTeam, awayTeam: props.goalsAwayTeam },
     { homeTeam: predGoalsHomeTeam[0], awayTeam: predGoalsAwayTeam[0] },
     scores[0]
   );
-
-  // console.log("What are my scores?", scores);
-
-  console.log(Math.floor(Date.now() / 1000));
 
   return (
     <tr>
@@ -88,6 +81,7 @@ export default function MatchCard(props) {
               ? logoDummy
               : props.homeTeamLogo
           }
+          alt={`logo ${props.homeTeamName}`}
         />
       </td>
       <td style={{ textAlign: "right", verticalAlign: "middle" }}>

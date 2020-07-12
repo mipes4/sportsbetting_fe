@@ -5,7 +5,6 @@ export const ADD_SCORES = "ADD_SCORES";
 export const ADD_ROUNDS = "ADD_ROUNDS";
 
 export function dataScores(data) {
-  // console.log("What is my payload?", data);
   return { type: ADD_SCORES, payload: data };
 }
 
@@ -26,7 +25,6 @@ export function fetchRounds() {
   return async (dispatch, getState) => {
     try {
       const response = await Axios.get(`${apiUrl}/rounds`);
-      // console.log("What is my response?", response);
       dispatch(dataRounds(response.data));
     } catch (e) {}
   };

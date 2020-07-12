@@ -13,11 +13,11 @@ export default function SignUp() {
   const token = useSelector(selectToken);
   const history = useHistory();
 
-  useEffect(() => {
-    if (token !== null) {
-      history.push("/");
-    }
-  }, [token, history]);
+  // useEffect(() => {
+  //   if (token !== null) {
+  //     history.push("/");
+  //   }
+  // }, [token, history]);
 
   function submitForm(event) {
     event.preventDefault();
