@@ -10,12 +10,11 @@ export default function Regels() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getUserWithStoredToken());
-  //   if (token === null) {
-  //     history.push("/login");
-  //   }
-  // }, [token, history]);
+  useEffect(() => {
+    if (token === null) {
+      history.push("/login");
+    }
+  }, [token, history]);
 
   return (
     <Container md={{ span: 8, offset: 2 }}>

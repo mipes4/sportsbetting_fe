@@ -11,14 +11,13 @@ export default function Home() {
   const token = useSelector(selectToken);
   const history = useHistory();
 
-  // useEffect(() => {
-  //   if (token === null) {
-  //     history.push("/login");
-  //   }
-  // }, [token, history]);
+  useEffect(() => {
+    if (token === null) {
+      history.push("/login");
+    }
+  }, [token, history]);
 
   useEffect(() => {
-    // dispatch(getUserWithStoredToken());
     dispatch(fetchRounds());
   }, [dispatch]);
 

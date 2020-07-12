@@ -9,12 +9,11 @@ export default function Admin() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getUserWithStoredToken());
-  //   if (token === null) {
-  //     history.push("/login");
-  //   }
-  // }, [token, history]);
+  useEffect(() => {
+    if (token === null) {
+      history.push("/login");
+    }
+  }, [token, history]);
 
   return (
     <div>

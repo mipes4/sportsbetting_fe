@@ -19,17 +19,12 @@ export default function Profiel() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserWithStoredToken);
-  }, []);
+    if (token === null) {
+      history.push("/login");
+    }
+  }, [token, history]);
 
-  // useEffect(() => {
-  //   dispatch(getUserWithStoredToken());
-  //   if (token === null) {
-  //     history.push("/login");
-  //   }
-  // }, [token, history]);
-
-  // if (!user.email) return <p>Loading...</p>;
+  if (!user.email) return <p>Loading...</p>;
 
   // console.log("What is user?", user.id);
 

@@ -19,16 +19,15 @@ export default function Voorspellingen() {
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    // dispatch(getUserWithStoredToken());
     dispatch(fetchMatchesAndPredictions(user.id));
     dispatch(fetchScores());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (token === null) {
-  //     history.push("/login");
-  //   }
-  // }, [token, history]);
+  useEffect(() => {
+    if (token === null) {
+      history.push("/login");
+    }
+  }, [token, history]);
 
   if (!matches) return dispatch(appLoading());
 
