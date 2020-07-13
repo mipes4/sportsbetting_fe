@@ -1,5 +1,7 @@
 # Sports betting app :soccer:
 
+[Live version of Sports betting app!](sports-betting.netlify.app)
+
 ### Table of contents
 
 - [ABOUT](#about)
