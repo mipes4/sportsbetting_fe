@@ -9,7 +9,6 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "bootswatch": "^4.5.0",
-    "dotenv": "^8.2.0",
     "evergreen-ui": "^4.28.0",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
