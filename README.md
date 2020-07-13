@@ -1,6 +1,6 @@
 # Sports betting app :soccer:
 
-[Live version of Sports betting app!](sports-betting.netlify.app)
+:sparkles: [Live version of Sports betting app!](https://sports-betting.netlify.app/) :sparkles:
 
 ### Table of contents
 
