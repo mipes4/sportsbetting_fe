@@ -16,12 +16,6 @@ export default (state = initialState, action) => {
       // );
       return { ...state, scores: action.payload };
     case ADD_ROUNDS:
-      // console.log(
-      //   "reducer mathes? type:",
-      //   action.type,
-      //   "payload:",
-      //   action.payload
-      // );
       return { ...state, rounds: action.payload };
 
     default:

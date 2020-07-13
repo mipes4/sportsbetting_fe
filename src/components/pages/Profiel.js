@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { selectToken, selectUser } from "../../store/user/selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { changeUser } from "../../store/user/actions";
+import { changeUser, getUserWithStoredToken } from "../../store/user/actions";
 import { Container, Form, Col, Button, Row } from "react-bootstrap";
 import { appLoading } from "../../store/appState/actions";
 
@@ -10,7 +10,6 @@ export default function Profiel() {
   const [frontName, setFrontName] = useState();
   const [lastName, setLastName] = useState();
   const [userName, setUserName] = useState();
-  const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [totaalToto, setTotaalToto] = useState();
   const [password, setPassword] = useState("");

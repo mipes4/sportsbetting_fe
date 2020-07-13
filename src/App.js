@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
-import Home from "./components/pages/Home";
+// import Home from "./components/pages/Home";
 import Voorspellingen from "./components/pages/Voorspellingen";
 import Regels from "./components/pages/Regels";
 import SignUp from "./components/pages/SignUp";
@@ -31,10 +31,10 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Voorspellingen} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/voorspellingen/:userId" component={Voorspellingen} />
+        <Route path="/voorspellingen" component={Voorspellingen} />
         <Route path="/regels" component={Regels} />
         <Route path="/profiel" component={Profiel} />
         <Route path="/admin" component={Admin} />

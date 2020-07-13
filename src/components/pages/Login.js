@@ -62,9 +62,6 @@ export default function Login() {
             Inloggen
           </Button>
         </Form.Group>
-        <Link to="/signup" style={{ textAlign: "center" }}>
-          Click here to sign up
-        </Link>
       </Form>
     </Container>
   );
